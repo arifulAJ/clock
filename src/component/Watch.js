@@ -3,10 +3,14 @@ import "./Watch.css"
 export default class Watch extends Component {
     state={ date:new Date()};
     componentDidMount(){
-        setInterval(() => {
-            this.setState({date:new Date()})
-        }, 1000);
+        this.clockTimer=setInterval(() => {this.tick() }, 1000);
+    };
+    componentWillUnmount(){
+        clearInterval(this.clockTimer)
     }
+tick(){
+    this.setState({date:new Date()})
+}
   render() {
     return (
       <div>
